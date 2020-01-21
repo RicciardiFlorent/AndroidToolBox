@@ -29,6 +29,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageISEN" />
 
+    <TextView
+        android:id="@+id/textLifeSpan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cycle de vie"
+        app:layout_constraintEnd_toEndOf="@+id/imageLifeSpan"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageLifeSpan"
+        app:layout_constraintTop_toBottomOf="@+id/imageLifeSpan" />
+
     <ImageButton
         android:id="@+id/imageLifeSpan"
         android:layout_width="85dp"
@@ -40,9 +50,24 @@
         android:padding="20dp"
         android:scaleType="fitCenter"
         android:tint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <TextView
+        android:id="@+id/textSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginRight="90dp"
+        android:text="Sauvegarde"
+        app:layout_constraintEnd_toEndOf="@+id/imageSave"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageSave"
+        app:layout_constraintTop_toBottomOf="@+id/imageSave" />
 
     <ImageButton
         android:id="@+id/imageSave"
@@ -56,9 +81,22 @@
         android:scaleType="fitCenter"
         android:tint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_save"
         tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textPermissions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Permissions"
+        app:layout_constraintEnd_toEndOf="@+id/imagePermissions"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imagePermissions"
+        app:layout_constraintTop_toBottomOf="@+id/imagePermissions" />
 
     <ImageButton
         android:id="@+id/imagePermissions"
@@ -66,60 +104,15 @@
         android:layout_height="85dp"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="72dp"
         android:background="@color/colorPrimary"
         android:padding="20dp"
         android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLifeSpan"
         app:srcCompat="@android:drawable/stat_sys_speakerphone" />
-
-    <ImageButton
-        android:id="@+id/imageWebServices"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:background="@color/colorPrimary"
-        android:padding="20dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageSave"
-        app:srcCompat="@android:drawable/stat_sys_download_done" />
-
-    <TextView
-        android:id="@+id/textLifeSpan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="4dp"
-        android:text="Cycle de vie"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageLifeSpan" />
-
-    <TextView
-        android:id="@+id/textSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="90dp"
-        android:layout_marginRight="90dp"
-        android:text="Sauvegarde"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageSave" />
-
-    <TextView
-        android:id="@+id/textPermissions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="4dp"
-        android:text="Permissions"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagePermissions" />
 
     <TextView
         android:id="@+id/textWebServices"
@@ -129,6 +122,24 @@
         android:layout_marginEnd="84dp"
         android:layout_marginRight="84dp"
         android:text="Webservices"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageWebServices"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageWebServices"
         app:layout_constraintTop_toBottomOf="@+id/imageWebServices" />
+
+    <ImageButton
+        android:id="@+id/imageWebServices"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:background="@color/colorPrimary"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageSave"
+        app:srcCompat="@android:drawable/stat_sys_download_done" />
 </androidx.constraintlayout.widget.ConstraintLayout>

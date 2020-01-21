@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
 import kotlinx.android.synthetic.main.activity_lifespan.*
 
 class LifespanActivity : AppCompatActivity() {
@@ -13,6 +14,24 @@ class LifespanActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lifespan)
 
         textStateActivity.text = "onCreate"
+
+        val newFragment = LifespanFragment()
+        val newFragment2 = Lifespan2Fragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.lifeSpanActivityLayout, newFragment)
+        transaction.commit()
+
+        buttonFragment.setOnClickListener{
+            if(newFragment.isResumed){
+                Log.d("TAG","Fragment 1 is resumed")
+                supportFragmentManager.beginTransaction().replace(R.id.lifeSpanActivityLayout, newFragment2).commit()
+            }else{
+                Log.d("TAG","Fragment 2 is resumed")
+                supportFragmentManager.beginTransaction().replace(R.id.lifeSpanActivityLayout, newFragment).commit()
+
+            }
+        }
+
     }
 
     override fun onStart(){
