@@ -27,5 +27,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
 
         })
+
+        imageSave.setOnClickListener {
+            val intent = Intent(this, FormActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

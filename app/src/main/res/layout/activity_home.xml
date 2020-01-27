@@ -19,13 +19,13 @@
 
     <TextView
         android:id="@+id/textHello"
-        android:layout_width="84dp"
-        android:layout_height="34dp"
+        android:layout_width="92dp"
+        android:layout_height="59dp"
         android:layout_marginTop="24dp"
         android:text="Bonjour"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageISEN" />
 
