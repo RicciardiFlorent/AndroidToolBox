@@ -33,4 +33,7 @@ class UserAdapter(val users: ArrayList<UserWS>):RecyclerView.Adapter<UserAdapter
         }
     }
 
+    //ajouter listener
+    //setonclik listnner appeler listenr
+    //bind donner a la vue un tag
 }
