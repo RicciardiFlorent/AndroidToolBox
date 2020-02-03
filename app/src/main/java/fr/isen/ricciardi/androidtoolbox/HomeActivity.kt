@@ -32,5 +32,15 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, FormActivity::class.java)
             startActivity(intent)
         }
+
+        imagePermissions.setOnClickListener {
+            val intent = Intent(this, PermissionsActivity::class.java)
+            startActivity(intent)
+        }
+
+        imageWebServices.setOnClickListener{
+            val intent = Intent(this, WebServiceActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
