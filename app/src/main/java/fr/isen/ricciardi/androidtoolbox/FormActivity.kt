@@ -92,7 +92,7 @@ class FormActivity : AppCompatActivity() {
         val inputString = bufferedReader.use{ it.readText()}  // Read the text from buffferReader and store in String variable
         var user = gson.fromJson(inputString, User::class.java) //Convert the Json File to Gson Object
         var birthDate = user.birthDate.toString().split("/")
-        Toast.makeText(this, " Vous avez ${getAge(birthDate[0].toInt(),birthDate[1].toInt(),birthDate[2].toInt())}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, " Vous avez ${getAge(birthDate[2].toInt(),birthDate[1].toInt(),birthDate[0].toInt())} ans !", Toast.LENGTH_SHORT).show()
 
         return user
     }
@@ -107,8 +107,10 @@ class FormActivity : AppCompatActivity() {
 
         var age = currentyear - year
 
-        if((month > currentmonth) || (month == currentmonth && day < currentday)){
-            age -= 1
+        if((month > currentmonth)){
+            age--
+        }else if ( currentmonth == month && currentday < day){
+            age--
         }
 
 
