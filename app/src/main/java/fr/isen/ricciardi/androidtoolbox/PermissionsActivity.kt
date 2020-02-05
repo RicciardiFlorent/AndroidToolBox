@@ -46,7 +46,9 @@ class PermissionsActivity : AppCompatActivity(), LocationListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_permissions)
+
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
         permissions_picture.setOnClickListener{
             val galeryIntent = Intent(Intent.ACTION_PICK)// Gallery
             galeryIntent.type = "image/*"

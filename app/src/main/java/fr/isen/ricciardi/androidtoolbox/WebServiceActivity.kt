@@ -1,5 +1,6 @@
 package fr.isen.ricciardi.androidtoolbox
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,9 +11,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
-import fr.isen.ricciardi.androidtoolbox.Classes.ContactAdapter
-import fr.isen.ricciardi.androidtoolbox.Classes.RandomUserResult
-import fr.isen.ricciardi.androidtoolbox.Classes.UserAdapter
+import fr.isen.ricciardi.androidtoolbox.Classes.*
 import kotlinx.android.synthetic.main.activity_permissions.*
 import kotlinx.android.synthetic.main.activity_web_service.*
 import kotlinx.android.synthetic.main.recycler_view_contact_cell_webservice.*
@@ -35,10 +34,10 @@ class WebServiceActivity : AppCompatActivity() {
             var result= gson.fromJson(response, RandomUserResult::class.java)
 
             result.results?.let{
-                Log.d("volley", it[0].gender)
+                Log.d("volley", it[0].picture?.large)
 
                 RecyclerViewWS.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-                RecyclerViewWS.adapter = UserAdapter(it)
+                RecyclerViewWS.adapter = UserAdapter(it,{ userItem : UserWS-> postItemClicked(userItem) })
             }
 
         }, Response.ErrorListener {
@@ -48,7 +47,12 @@ class WebServiceActivity : AppCompatActivity() {
         queue.add(request)
 
 
+    }
 
-
+    private fun postItemClicked(userItem : UserWS) {
+        //val intent = Intent(this, UserActivity::class.java)
+        // intent.putExtra("user", postItem.user)
+        //startActivity(intent)
+        Toast.makeText(this, "Clicked: ${userItem.name?.first} ${userItem.name?.last} ", Toast.LENGTH_LONG).show()
     }
 }
