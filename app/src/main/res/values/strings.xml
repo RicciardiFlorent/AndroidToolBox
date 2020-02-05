@@ -17,7 +17,7 @@
     <string name="lifespan_title">"Cycle de vie</string>
     <string name="lifespan_frag1">"Fragment 1"</string>
     <string name="lifespan_frag2">"Fragment 2"</string>
-    <string name="lifespan_btn">"Fragment 1"</string>
+    <string name="lifespan_btn">"Changer fragment"</string>
     <string name="form_title">"Formulaire"</string>
     <string name="form_lastname">"Nom"</string>
     <string name="form_firstname">"Prénom"</string>
@@ -33,4 +33,6 @@
     <string name="no_photo_choosen">"Aucune photo choisie"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Name</string>
+    <string name="sexe">Sexe</string>
 </resources>

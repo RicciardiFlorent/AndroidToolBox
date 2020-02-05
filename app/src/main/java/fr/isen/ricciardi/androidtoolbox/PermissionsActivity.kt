@@ -26,6 +26,7 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.*
 import fr.isen.ricciardi.androidtoolbox.Classes.Contact
@@ -79,6 +80,8 @@ class PermissionsActivity : AppCompatActivity(), LocationListener {
             contactList.add(contactModel)
             Log.d("Contact", contactModel.displayName)
         }
+        contactRecyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+
         contactRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         contactRecyclerView.adapter = ContactAdapter(contactList)
     }

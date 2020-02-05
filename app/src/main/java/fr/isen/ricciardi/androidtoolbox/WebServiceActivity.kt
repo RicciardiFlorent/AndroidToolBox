@@ -1,10 +1,12 @@
 package fr.isen.ricciardi.androidtoolbox
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -35,7 +37,7 @@ class WebServiceActivity : AppCompatActivity() {
 
             result.results?.let{
                 Log.d("volley", it[0].picture?.large)
-
+                RecyclerViewWS.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
                 RecyclerViewWS.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
                 RecyclerViewWS.adapter = UserAdapter(it,{ userItem : UserWS-> postItemClicked(userItem) })
             }
@@ -50,9 +52,11 @@ class WebServiceActivity : AppCompatActivity() {
     }
 
     private fun postItemClicked(userItem : UserWS) {
-        //val intent = Intent(this, UserActivity::class.java)
-        // intent.putExtra("user", postItem.user)
-        //startActivity(intent)
+
+        val alertDialogB : AlertDialog.Builder = AlertDialog.Builder(this)
+        alertDialogB.setTitle("Informations").setMessage("Nom : " + userItem.name?.last + "\nPrenom : " + userItem.name?.first+ "\nSexe : " + userItem.gender + "\nEmail : " + userItem.email)
+        var alertDialog: AlertDialog = alertDialogB.create()
+        alertDialog.show()
         Toast.makeText(this, "Clicked: ${userItem.name?.first} ${userItem.name?.last} ", Toast.LENGTH_LONG).show()
     }
 }
