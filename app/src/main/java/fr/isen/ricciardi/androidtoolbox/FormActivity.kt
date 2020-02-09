@@ -3,12 +3,14 @@ package fr.isen.ricciardi.androidtoolbox
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View.OnFocusChangeListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import fr.isen.ricciardi.androidtoolbox.Classes.User
 import kotlinx.android.synthetic.main.activity_form.*
+import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.File
 import java.text.SimpleDateFormat
@@ -32,9 +34,11 @@ class FormActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat(myFormat, Locale.FRANCE)
 
         var user = readJSONFromFile(filename)
-        inputFirstname.setText(user.firstName)
-        inputLastName.setText(user.lastName)
-        inputDate.setText(user.birthDate)
+        inputFirstname.setText(user?.firstName)
+        inputLastName.setText(user?.lastName)
+        inputDate.setText(user?.birthDate)
+
+
 
         inputDate.setOnFocusChangeListener(OnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
@@ -70,7 +74,7 @@ class FormActivity : AppCompatActivity() {
         infosButton.setOnClickListener {
             var user = readJSONFromFile(filename)
             val alertDialogB : AlertDialog.Builder = AlertDialog.Builder(this)
-            alertDialogB.setTitle("Informations").setMessage("Nom : " + user.lastName + "\nPrenom : " + user.firstName+ "\nDate de naissance : " + user.birthDate)
+            alertDialogB.setTitle("Informations").setMessage("Nom : " + user?.lastName + "\nPrenom : " + user?.firstName+ "\nDate de naissance : " + user?.birthDate)
             var alertDialog: AlertDialog = alertDialogB.create()
             alertDialog.show()
         }
@@ -86,15 +90,25 @@ class FormActivity : AppCompatActivity() {
     }
 
     //This function allows to read a JSON object from a file
-    fun readJSONFromFile(f:String): User{
+    fun readJSONFromFile(f:String): User?{
         var gson = Gson() //Creating a new Gson object to read data
-        val bufferedReader: BufferedReader = File(f).bufferedReader() // //Read the user.json file
-        val inputString = bufferedReader.use{ it.readText()}  // Read the text from buffferReader and store in String variable
-        var user = gson.fromJson(inputString, User::class.java) //Convert the Json File to Gson Object
-        var birthDate = user.birthDate.toString().split("/")
-        Toast.makeText(this, " Vous avez ${getAge(birthDate[2].toInt(),birthDate[1].toInt(),birthDate[0].toInt())} ans !", Toast.LENGTH_SHORT).show()
 
-        return user
+
+        val file= File(f)
+        if (file.isFile) {
+            val size: Long = file.length()
+            if (size != 0L) {
+                val bufferedReader: BufferedReader = file.bufferedReader() // //Read the user.json file
+                val inputString = bufferedReader.use{ it.readText()}  // Read the text from buffferReader and store in String variable
+                var user = gson.fromJson(inputString, User::class.java) //Convert the Json File to Gson Object
+                var birthDate = user.birthDate.toString().split("/")
+                Toast.makeText(this, " Vous avez ${getAge(birthDate[2].toInt(),birthDate[1].toInt(),birthDate[0].toInt())} ans !", Toast.LENGTH_SHORT).show()
+
+                return user
+            }
+        }
+        return null
+
     }
 
     fun getAge(year: Int, month: Int, day: Int) : Int{
@@ -117,4 +131,11 @@ class FormActivity : AppCompatActivity() {
         return age
 
     }
+
+
+
 }
+
+
+
+

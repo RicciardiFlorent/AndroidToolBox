@@ -32,6 +32,7 @@ import com.google.android.gms.location.*
 import fr.isen.ricciardi.androidtoolbox.Classes.Contact
 import fr.isen.ricciardi.androidtoolbox.Classes.ContactAdapter
 import fr.isen.ricciardi.androidtoolbox.Classes.ContactModel
+import fr.isen.ricciardi.androidtoolbox.Classes.UserWS
 import kotlinx.android.synthetic.main.activity_permissions.*
 
 class PermissionsActivity : AppCompatActivity(), LocationListener {
@@ -83,23 +84,18 @@ class PermissionsActivity : AppCompatActivity(), LocationListener {
         contactRecyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
         contactRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        contactRecyclerView.adapter = ContactAdapter(contactList)
+        contactRecyclerView.adapter = ContactAdapter(contactList, { contactItem : ContactModel-> contactItemClicked(contactItem) })
     }
 
+    private fun contactItemClicked(contactItem : ContactModel) {
 
-    @SuppressLint("MissingPermission")
-    fun startGPS() {
-        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, null)
-        val location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-        location?.let {
-            refreshPositionUI(it)
-        }
+        val alertDialogB : AlertDialog.Builder = AlertDialog.Builder(this)
+        alertDialogB.setTitle("Informations").setMessage("Nom : " + contactItem.displayName)
+        var alertDialog: AlertDialog = alertDialogB.create()
+        alertDialog.show()
+        Toast.makeText(this, "Clicked: ${contactItem.displayName} ", Toast.LENGTH_LONG).show()
     }
 
-    fun refreshPositionUI(location: Location){
-        textLatitude.text = "Latitude: ${location.latitude}"
-        textLongitude.text = "Longitude: ${location.longitude}"
-    }
 
 
     fun requestPermission(permissionToRequest: String, requestCode: Int, handler: ()-> Unit) {
@@ -132,15 +128,31 @@ class PermissionsActivity : AppCompatActivity(), LocationListener {
 
     override fun onLocationChanged(location: Location?) {
         location?.let{
-            refreshPositionUI(it)
+            refreshPositionuser(it)
         }
     }
 
+    @SuppressLint("MissingPermission")
+    fun startGPS() {
+        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, null)
+        val location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+        location?.let {
+            refreshPositionuser(it)
+        }
+    }
+
+    fun refreshPositionuser(location: Location){
+        textLatitude.text = "Latitude: ${location.latitude}"
+        textLongitude.text = "Longitude: ${location.longitude}"
+    }
+
+
+
+    private fun LocationManager.requestSingleUpdate(networkProvider: String, permissionsActivity: PermissionsActivity, nothing: Nothing?) {
+
+    }
+
+
 
 }
-
-private fun LocationManager.requestSingleUpdate(networkProvider: String, permissionsActivity: PermissionsActivity, nothing: Nothing?) {
-
-}
-
 

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.isen.ricciardi.androidtoolbox.R
 import kotlinx.android.synthetic.main.recycler_view_contact_cell.view.*
 
-class ContactAdapter(val contacts: ArrayList<ContactModel>):RecyclerView.Adapter<ContactAdapter.ContactViewHolder>(){
+class ContactAdapter(val contacts: ArrayList<ContactModel>,  val clickListener:(ContactModel) -> Unit):RecyclerView.Adapter<ContactAdapter.ContactViewHolder>(){
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -22,12 +22,14 @@ class ContactAdapter(val contacts: ArrayList<ContactModel>):RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ContactAdapter.ContactViewHolder, position: Int) {
         val contact = contacts[position]
-        holder.bind(contact)
+        holder.bind(contact, clickListener)
     }
 
     class ContactViewHolder(val view: View): RecyclerView.ViewHolder(view){
-        fun bind(contact: ContactModel){
+        fun bind(contact: ContactModel,clickListener: (ContactModel) -> Unit){
             view.nameTextView.text= contact.displayName
+            view.setOnClickListener { clickListener(contact) }
+
         }
     }
 }
